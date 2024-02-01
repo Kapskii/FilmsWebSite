@@ -4,10 +4,10 @@ import { FilmInfoType, FilmPageType } from "../types/types";
 
 type FilmsSliceType = {
   films: FilmInfoType[];
-  film: FilmPageType
+  film: FilmPageType;
   loader: boolean;
-  pagesCount: number
-  currentPage: number
+  pagesCount: number;
+  currentPage: number;
 };
 
 const initialState: FilmsSliceType = {
@@ -18,26 +18,32 @@ const initialState: FilmsSliceType = {
   currentPage: 1,
 };
 
-export const fetchFilms = createAsyncThunk("fetchFilms", async (pageNumber: number, thunkAPI) => {
-  const response = await filmsAPI.getFilms(pageNumber);
-  return response.data;
-});
+export const fetchFilms = createAsyncThunk(
+  "fetchFilms",
+  async (pageNumber: number, thunkAPI) => {
+    const response = await filmsAPI.getFilms(pageNumber);
+    return response.data;
+  }
+);
 
-export const fetchFilm = createAsyncThunk("fetchFilm", async (idMovie: number, thunkAPI) => {
-  const response = await filmsAPI.getFilm(idMovie);
-  return response.data;
-});
+export const fetchFilm = createAsyncThunk(
+  "fetchFilm",
+  async (idMovie: number, thunkAPI) => {
+    const response = await filmsAPI.getFilm(idMovie);
+    return response.data;
+  }
+);
 
 export const filmsSlice = createSlice({
   name: "filmsReducer",
   initialState,
   reducers: {
     setPage(state, action: PayloadAction<number>) {
-      state.currentPage = action.payload
+      state.currentPage = action.payload;
     },
     clearFilmData(state) {
-      state.film = {} as FilmPageType
-    }
+      state.film = {} as FilmPageType;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchFilms.fulfilled, (state, action) => {
@@ -49,10 +55,13 @@ export const filmsSlice = createSlice({
       state.loader = true;
     });
     builder.addCase(fetchFilm.fulfilled, (state, action) => {
-      state.film = action.payload
-      
-    })
+      state.film = action.payload;
+      state.loader = false;
+    });
+    builder.addCase(fetchFilm.pending, (state, action) => {
+      state.loader = true;
+    });
   },
 });
 
-export const {setPage, clearFilmData} = filmsSlice.actions
+export const { setPage, clearFilmData } = filmsSlice.actions;

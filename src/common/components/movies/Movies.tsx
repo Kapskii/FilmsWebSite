@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-
 import { Movie } from "./movie-list/Movie-list";
-
 import { PaginationRanges } from "../pagination/Pagination";
 import { useAppDispatch, useAppSelector } from "../../../RTK/store";
 import { fetchFilms } from "../../../RTK/filmsSlice";
 import s from "./movies.module.css";
+import { Loader } from "../loader/Loader";
+
 
 export const Movies = () => {
   const dispatch = useAppDispatch();
@@ -20,15 +20,11 @@ export const Movies = () => {
   return (
     <div className={s.movies_wrapper}>
       <div className={s.movies}>
-        {" "}
-        {loader ? (
-          <h3>Loading...</h3>
-        ) : (
-          movies.map((film, id) => <Movie film={film} key={id} />)
-        )}
+        {loader ? (<Loader/>) : (movies.map((film, id) => <Movie film={film} key={id} />))}
       </div>
-
-      <PaginationRanges />
+      <div className={s.pagination}>
+        <PaginationRanges />
+      </div>
     </div>
   );
 };

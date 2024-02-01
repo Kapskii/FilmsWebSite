@@ -10,13 +10,14 @@ export type FilmInfoType = {
 };
 
 export type FilmPageType = {
-    nameRu: string
-    posterUrlPreview: string
-    coverUrl: string
-    ratingKinopoisk: number
-    ratingKinopoiskVoteCount: number
-    webUrl: string
-    year: number
-    filmLength: number
-    description: string
-}
+  nameRu: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  coverUrl: string;
+  ratingKinopoisk: number;
+  ratingKinopoiskVoteCount: number;
+  webUrl: string;
+  year: number;
+  filmLength: number;
+  description: string;
+};
