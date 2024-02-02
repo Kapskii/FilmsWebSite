@@ -9,6 +9,9 @@ export const filmsAPI = {
   getFilm(id: number) {
     return instance.get(`v2.2/films/${id}`);
   },
+  getStaff(id: number) {
+    return instance.get(`v1/staff?filmId=${id}`)
+  }
 };
 
 

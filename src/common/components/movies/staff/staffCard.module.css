@@ -1,0 +1,42 @@
+.staffCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.staffCard_imageBlock{
+    flex: 1;
+    width: 140px;
+    min-height: 230px;
+    margin-bottom: auto;
+}
+
+.staffCard_image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.staffCard_nameBlock{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    width: 100%;
+}
+
+.staffCard_NameRu{
+    font-size: 12px;
+}
+
+.staffCard_NameEn{
+    font-size: 11px;
+}
+
+.staffCard_person{
+    font-size: 10px;
+}

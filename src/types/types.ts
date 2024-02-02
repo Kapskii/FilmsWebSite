@@ -22,6 +22,15 @@ export type FilmPageType = {
   description: string;
 };
 
+export type StaffType = {
+  nameRu: string;
+  nameEn: string;
+  description: string;
+  posterUrl: string;
+  professionText: string;
+  professionKey: string;
+};
+
 export type NewsInfoType = {
   kinopoiskId: number;
   imageUrl: string;

@@ -1,10 +1,11 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { filmsAPI } from "../api/filmsAPI";
-import { FilmInfoType, FilmPageType } from "../types/types";
+import { FilmInfoType, FilmPageType, StaffType } from "../types/types";
 
 type FilmsSliceType = {
   films: FilmInfoType[];
   film: FilmPageType;
+  staff: StaffType[];
   loader: boolean;
   pagesCount: number;
   currentPage: number;
@@ -13,6 +14,7 @@ type FilmsSliceType = {
 const initialState: FilmsSliceType = {
   films: [],
   film: {} as FilmPageType,
+  staff: [],
   loader: false,
   pagesCount: 0,
   currentPage: 1,
@@ -30,6 +32,15 @@ export const fetchFilm = createAsyncThunk(
   "fetchFilm",
   async (idMovie: number, thunkAPI) => {
     const response = await filmsAPI.getFilm(idMovie);
+
+    return response.data;
+  }
+);
+
+export const fetchStaff = createAsyncThunk(
+  "fetchStaff",
+  async (idMovie: number, thunkAPI) => {
+    const response = await filmsAPI.getStaff(idMovie);
     return response.data;
   }
 );
@@ -43,6 +54,7 @@ export const filmsSlice = createSlice({
     },
     clearFilmData(state) {
       state.film = {} as FilmPageType;
+      state.staff = []
     },
   },
   extraReducers: (builder) => {
@@ -60,6 +72,10 @@ export const filmsSlice = createSlice({
     });
     builder.addCase(fetchFilm.pending, (state, action) => {
       state.loader = true;
+    });
+    builder.addCase(fetchStaff.fulfilled, (state, action) => {
+      state.staff = action.payload;
+      
     });
   },
 });

@@ -2,29 +2,31 @@ import { useNavigate, useParams } from "react-router-dom";
 import s from "./moviePage.module.css";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../RTK/store";
-import { clearFilmData, fetchFilm } from "../../../../RTK/filmsSlice";
+import {
+  clearFilmData,
+  fetchFilm,
+  fetchStaff,
+} from "../../../../RTK/filmsSlice";
 import { Loader } from "../../loader/Loader";
+import { StaffCard } from "../staff/StaffCard";
 
 export const MoviePage = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const movie = useAppSelector((state) => state.filmsReducer.film);
   const loading = useAppSelector((state) => state.filmsReducer.loader);
-
-  // console.log(movie);
+  const staff = useAppSelector((state) => state.filmsReducer.staff);
 
   const param = useParams();
 
   useEffect(() => {
     if (param.id) {
       dispatch(fetchFilm(+param.id));
-    } else {
-      navigate("/");
+      dispatch(fetchStaff(+param.id));
     }
     return () => {
       dispatch(clearFilmData());
     };
-  }, [param, navigate]);
+  }, [param]);
 
   return (
     <div className={s.main}>
@@ -32,7 +34,6 @@ export const MoviePage = () => {
         <Loader />
       ) : (
         <>
-          {" "}
           <div className={s.cover}>
             <img className={s.cover_image} src={movie.posterUrl} alt="cover" />
           </div>
@@ -53,6 +54,9 @@ export const MoviePage = () => {
                 {movie.description}
               </p>
             </article>
+            <div className={s.staff_block}>
+              {staff.map((person, id) => <StaffCard person={person} key={id}/>)}
+            </div>
             <a
               className={s.moviesInfo_buttonWatch}
               href={movie.webUrl}
