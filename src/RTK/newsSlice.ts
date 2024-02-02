@@ -16,7 +16,7 @@ const initialState: NewsSliceType = {
   totalPages: 0,
 };
 
-export const fetchNews = createAsyncThunk("fetchNews", async (page: number, thunkAPI) => {
+export const fetchNews = createAsyncThunk("fetchNews", async (page: number, _) => {
   const response = await newsAPI.getNews(page);
   return {...response.data, page};
 });
@@ -36,7 +36,7 @@ export const newsSlice = createSlice({
       state.currentPage = action.payload.page;
       state.loader = false;
     });
-    builder.addCase(fetchNews.pending, (state, action) => {
+    builder.addCase(fetchNews.pending, (state, _) => {
       state.loader = true;
     });
   },

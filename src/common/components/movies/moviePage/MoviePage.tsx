@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import s from "./moviePage.module.css";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../RTK/store";

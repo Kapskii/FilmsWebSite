@@ -22,7 +22,7 @@ const initialState: FilmsSliceType = {
 
 export const fetchFilms = createAsyncThunk(
   "fetchFilms",
-  async (pageNumber: number, thunkAPI) => {
+  async (pageNumber: number) => {
     const response = await filmsAPI.getFilms(pageNumber);
     return response.data;
   }
@@ -30,7 +30,7 @@ export const fetchFilms = createAsyncThunk(
 
 export const fetchFilm = createAsyncThunk(
   "fetchFilm",
-  async (idMovie: number, thunkAPI) => {
+  async (idMovie: number) => {
     const response = await filmsAPI.getFilm(idMovie);
 
     return response.data;
@@ -39,7 +39,7 @@ export const fetchFilm = createAsyncThunk(
 
 export const fetchStaff = createAsyncThunk(
   "fetchStaff",
-  async (idMovie: number, thunkAPI) => {
+  async (idMovie: number) => {
     const response = await filmsAPI.getStaff(idMovie);
     return response.data;
   }
@@ -63,14 +63,14 @@ export const filmsSlice = createSlice({
       state.pagesCount = action.payload.totalPages;
       state.loader = false;
     });
-    builder.addCase(fetchFilms.pending, (state, action) => {
+    builder.addCase(fetchFilms.pending, (state, _) => {
       state.loader = true;
     });
     builder.addCase(fetchFilm.fulfilled, (state, action) => {
       state.film = action.payload;
       state.loader = false;
     });
-    builder.addCase(fetchFilm.pending, (state, action) => {
+    builder.addCase(fetchFilm.pending, (state, _) => {
       state.loader = true;
     });
     builder.addCase(fetchStaff.fulfilled, (state, action) => {

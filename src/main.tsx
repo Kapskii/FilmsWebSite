@@ -3,9 +3,7 @@ import "./index.css";
 import { App } from "./App";
 import { Provider } from "react-redux";
 import { store } from "./RTK/store";
-import { BrowserRouter, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ErrorPage } from "./common/components/errorPage/ErrorPage";
-import { MoviePage } from "./common/components/movies/moviePage/MoviePage";
+import { BrowserRouter } from "react-router-dom";
 
 
 // const router = createBrowserRouter([
