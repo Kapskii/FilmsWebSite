@@ -21,3 +21,12 @@ export type FilmPageType = {
   filmLength: number;
   description: string;
 };
+
+export type NewsInfoType = {
+  kinopoiskId: number;
+  imageUrl: string;
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: string;
+};

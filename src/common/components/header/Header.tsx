@@ -4,10 +4,15 @@ import s from "./header.module.css";
 export const Header = () => {
   return (
     <header className={s.header}>
-      <h1 className={s.title}>
-        <NavLink to={"/"}>MovieFlix</NavLink>
+      <h1 className={s.header_title}>
+        <NavLink to={"/"}>Movie<p>Flix</p></NavLink>
       </h1>
-      <input className={s.search_element} type="text" />
+      <ul>
+        <li className={s.header_navItem}>
+          <NavLink to={"/news"}>News</NavLink>
+        </li>
+      </ul>
+      <input className={s.header_searchElement} type="text" />
     </header>
   );
 };

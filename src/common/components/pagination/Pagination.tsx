@@ -1,39 +1,37 @@
 import Pagination from "@mui/material/Pagination";
-
 import { ChangeEvent } from "react";
-import { setPage } from "../../../RTK/filmsSlice";
-import { useAppDispatch, useAppSelector } from "../../../RTK/store";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-export const PaginationRanges = () => {
-  const dispatch = useAppDispatch();
+type PropsType = {
+  pagesCount: number;
+  callBack: (event: ChangeEvent<unknown>, page: number) => void;
+};
 
-  const handlePageChange = (event: ChangeEvent<unknown>, page: number) => {
-    dispatch(setPage(page));
-  };
-
-  const pagesCount = useAppSelector((state) => state.filmsReducer.pagesCount);
+export const PaginationRanges = (props: PropsType) => {
+  const { pagesCount } = props;
 
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#FF4500',
-      }
+        main: "#FF4500",
+      },
     },
   });
 
-  
-
-
   return (
     <ThemeProvider theme={theme}>
-    <Pagination
-      size="large"
-      count={pagesCount}
-      siblingCount={1}
-      color="primary"
-      onChange={handlePageChange}
-    />
+      <Pagination
+        sx={{
+          ".MuiButtonBase-root": {
+            color: "#ffffff",
+          },
+        }}
+        size="large"
+        count={pagesCount}
+        siblingCount={1}
+        color="primary"
+        onChange={props.callBack}
+      />
     </ThemeProvider>
   );
 };
