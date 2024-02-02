@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Movie } from "./movie-list/Movie-list";
+import { MovieList } from "./movie-list/MovieList";
 import { PaginationRanges } from "../pagination/Pagination";
 import { useAppDispatch, useAppSelector } from "../../../RTK/store";
 import { fetchFilms } from "../../../RTK/filmsSlice";
@@ -20,7 +20,7 @@ export const Movies = () => {
   return (
     <div className={s.movies_wrapper}>
       <div className={s.movies}>
-        {loader ? (<Loader/>) : (movies.map((film, id) => <Movie film={film} key={id} />))}
+        {loader ? (<Loader/>) : (movies.map((film, id) => <MovieList film={film} key={id} />))}
       </div>
       <div className={s.pagination}>
         <PaginationRanges />

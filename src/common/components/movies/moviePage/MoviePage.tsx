@@ -11,7 +11,7 @@ export const MoviePage = () => {
   const movie = useAppSelector((state) => state.filmsReducer.film);
   const loading = useAppSelector((state) => state.filmsReducer.loader);
 
-  console.log(movie);
+  // console.log(movie);
 
   const param = useParams();
 

@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import s from "./movie-list.module.css";
+import s from "./movieList.module.css";
 import { FilmInfoType } from "../../../../types/types";
 
 type PropsType = {
   film: FilmInfoType;
 };
 
-export const Movie = (props: PropsType) => {
+export const MovieList = (props: PropsType) => {
   const { film } = props;
 
   return (
