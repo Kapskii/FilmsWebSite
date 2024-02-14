@@ -1,5 +1,4 @@
 .header {
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
@@ -31,6 +30,11 @@ letter-spacing: 2px;
 }
 
 
+.header_searchForm{
+    position: relative;
+}
+
+
 .header_searchElement {
     font-size: 15px;
     padding: 5px;
@@ -44,6 +48,25 @@ letter-spacing: 2px;
 
 .header_searchElement:focus {
     outline: none;
-    border: 2px solid rgb(180, 180, 180);
+    border: 0.5px solid orangered;
     background-color: rgb(60, 60, 60);
+}
+
+.header_searchButton{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 3;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600;
+    background: linear-gradient(90deg, orangered 30%, rgb(255, 166, 0) 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.header_searchButton:hover {
+    opacity: 0.9;
 }

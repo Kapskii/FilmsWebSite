@@ -6,6 +6,7 @@ import {
   clearFilmData,
   fetchFilm,
   fetchStaff,
+  fetchVideo,
 } from "../../../../RTK/filmsSlice";
 import { Loader } from "../../loader/Loader";
 import { StaffCard } from "../staff/StaffCard";
@@ -15,6 +16,7 @@ export const MoviePage = () => {
   const movie = useAppSelector((state) => state.filmsReducer.film);
   const loading = useAppSelector((state) => state.filmsReducer.loader);
   const staff = useAppSelector((state) => state.filmsReducer.staff);
+  const trailer = useAppSelector((state) => state.filmsReducer.video);
 
   const param = useParams();
 
@@ -22,6 +24,7 @@ export const MoviePage = () => {
     if (param.id) {
       dispatch(fetchFilm(+param.id));
       dispatch(fetchStaff(+param.id));
+      dispatch(fetchVideo(+param.id));
     }
     return () => {
       dispatch(clearFilmData());
@@ -36,6 +39,7 @@ export const MoviePage = () => {
         <>
           <div className={s.cover}>
             <img className={s.cover_image} src={movie.posterUrl} alt="cover" />
+            <div className={s.overlay}></div>
           </div>
           <div className={s.moviesInfo}>
             <article className={s.moviesInfo_descriptionBlock}>
@@ -55,7 +59,9 @@ export const MoviePage = () => {
               </p>
             </article>
             <div className={s.staff_block}>
-              {staff.map((person, id) => <StaffCard person={person} key={id}/>)}
+              {staff.map((person, id) => (
+                <StaffCard person={person} key={id} />
+              ))}
             </div>
             <a
               className={s.moviesInfo_buttonWatch}

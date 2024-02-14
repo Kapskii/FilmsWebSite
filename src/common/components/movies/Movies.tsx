@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect } from "react";
 import { MovieList } from "./movie-list/MovieList";
 import { PaginationRanges } from "../pagination/Pagination";
 import { useAppDispatch, useAppSelector } from "../../../RTK/store";
-import { fetchFilms, setPage } from "../../../RTK/filmsSlice";
+import { fetchFilms, fetchSearch, setPage } from "../../../RTK/filmsSlice";
 import s from "./movies.module.css";
 import { Loader } from "../loader/Loader";
 
@@ -16,7 +16,6 @@ export const Movies = () => {
   const moviesPageChange = (event: ChangeEvent<unknown>, page: number) => {
     dispatch(setPage(page));
   };
-
 
   useEffect(() => {
     dispatch(fetchFilms(page));
@@ -32,7 +31,7 @@ export const Movies = () => {
         )}
       </div>
       <div className={s.pagination}>
-        <PaginationRanges pagesCount={pagesCount} callBack={moviesPageChange}/>
+        <PaginationRanges pagesCount={pagesCount} callBack={moviesPageChange} />
       </div>
     </div>
   );

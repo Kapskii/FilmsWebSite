@@ -22,6 +22,13 @@ export type FilmPageType = {
   description: string;
 };
 
+
+export type VideoType = {
+  url: string;
+  name: string;
+  site: string;
+};
+
 export type StaffType = {
   nameRu: string;
   nameEn: string;

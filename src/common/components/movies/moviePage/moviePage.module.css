@@ -7,6 +7,7 @@
 
 }
 .cover {
+    position: relative;
     flex: 1;
     max-width: 500px;
     width: max-content;
@@ -14,9 +15,23 @@
 }
 
 .cover_image {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to left, rgba(20, 20, 20, 1), rgba(20, 20, 20, 0));
 }
 
 .moviesInfo {

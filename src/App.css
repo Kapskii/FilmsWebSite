@@ -17,5 +17,4 @@ h1,h2,h3,h4,h5,h6,p,span {
   align-items: center;
   width: 100vw;
   flex-wrap: wrap;
-  gap: 50px;
 }
